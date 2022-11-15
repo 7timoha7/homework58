@@ -1,11 +1,13 @@
 import React from 'react';
 import Backdrop from "../Backdrop/Backdrop";
 import {Button} from "../../types";
+import NewButton from "../NewButton/NewButton";
+
 
 interface Props extends React.PropsWithChildren {
   show: boolean;
   title: string;
-  onClose: React.MouseEventHandler;
+  onClose: () => void;
   btnConfiguration: Button[];
 }
 
@@ -18,7 +20,8 @@ const Modal: React.FC<Props> = ({show, title, onClose, btnConfiguration, childre
            onClick={onClose}>
         <div className="modal-dialog" onClick={e => e.stopPropagation()}>
           <div className="modal-content">
-            <button className="btn-close align-self-end" onClick={onClose}></button>
+            <NewButton classNameBtn={"btn-close align-self-end"}
+                       onClickBtn={onClose}/>
             <div className="modal-header">
               <h1 className="modal-title fs-5">{title}</h1>
             </div>
@@ -27,12 +30,10 @@ const Modal: React.FC<Props> = ({show, title, onClose, btnConfiguration, childre
             </div>
             <div className="align-self-end">
               {btnConfiguration.map((item) => {
-                return <button
-                  className={item.classBtn}
-                  onClick={item.onClickBtn}
-                  key={item.title + 1}>
-                  {item.title}
-                </button>
+                return <NewButton onClickBtn={item.onClickBtn}
+                                  classNameBtn={item.classBtn}
+                                  nameBtn={item.title}
+                                  key={item.title + 1}/>
               })}
             </div>
           </div>
