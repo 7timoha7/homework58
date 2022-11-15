@@ -11,14 +11,23 @@ interface Props extends React.PropsWithChildren {
   btnConfiguration: Button[];
 }
 
-const Modal: React.FC<Props> = ({show, title, onClose, btnConfiguration, children}) => {
+const Modal: React.FC<Props> = ({
+                                  show,
+                                  title,
+                                  onClose,
+                                  btnConfiguration,
+                                  children
+                                }) => {
 
   return (
     <>
-      <Backdrop show={show} onClick={onClose}/>
-      <div className="modal show" style={{display: show ? 'block' : 'none'}}
+      <Backdrop show={show}
+                onClick={onClose}/>
+      <div className="modal show"
+           style={{display: show ? 'block' : 'none'}}
            onClick={onClose}>
-        <div className="modal-dialog" onClick={e => e.stopPropagation()}>
+        <div className="modal-dialog"
+             onClick={e => e.stopPropagation()}>
           <div className="modal-content">
             <NewButton classNameBtn={"btn-close align-self-end"}
                        onClickBtn={onClose}/>
